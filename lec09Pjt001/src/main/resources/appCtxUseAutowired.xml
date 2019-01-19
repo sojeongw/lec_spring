@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- annotation을 설정하려면 xmlns:context와 spring-beans, context를 넣어줘야 한다.  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+ 		http://www.springframework.org/schema/beans/spring-beans.xsd 
+ 		http://www.springframework.org/schema/context 
+ 		http://www.springframework.org/schema/context/spring-context.xsd">
+ 	<!-- schema/beans/spring-beans.xsd도 spring-context로 바꾼다. -->
+
+	<!-- constructor-arg를 사용하지 않는 대신 이 한 줄을 추가한다. -->
+	<context:annotation-config />
+
+	<!-- id를 Autowired된 객체와 이름을 똑같이 하면 qualifier를 쓰지 않아도 되지만 추천하진 않음. -->
+	<!--  그냥 wordDao1로 맞춰서 사용하는 것이 좋다. -->
+	<bean id="wordDao" class="com.word.dao.WordDao" >
+		<!-- <qualifier value="usedDao"/> -->
+	</bean>
+	<bean id="wordDao2" class="com.word.dao.WordDao" />
+	<bean id="wordDao3" class="com.word.dao.WordDao" />
+	
+	<bean id="registerService" class="com.word.service.WordRegisterServiceUseAutowired" />
+	
+	<bean id="searchService" class="com.word.service.WordSearchServiceUseAutowired" />
+	
+</beans>
